@@ -4,7 +4,7 @@ import sys
 import argparse
 from typing import List, Tuple
 from requests.auth import HTTPBasicAuth
-
+from getpass import getpass
 
 class ElasticUserDeleter:
     def __init__(self, hostname: str, username: str, password: str, dry_run: bool = False):
@@ -134,7 +134,7 @@ def main():
 
     hostname = args.hostname or input("Enter hostname (e.g., cloud.elastic.co): ").strip()
     username = args.username or input("Enter API username: ").strip()
-    password = args.password or input("Enter API password: ").strip()
+    password = args.password or getpass("Enter API password: ")
 
     deleter = ElasticUserDeleter(hostname, username, password, dry_run=args.dry_run)
 
