@@ -5,7 +5,7 @@ import sys
 import argparse
 from typing import Dict, List, Set
 from requests.auth import HTTPBasicAuth
-
+from getpass import getpass
 
 class ElasticUserManager:
     def __init__(self, hostname: str, username: str, password: str):
@@ -100,7 +100,7 @@ def main():
 
     hostname = args.hostname or input("Enter hostname (e.g., cloud.elastic.co): ").strip()
     username = args.username or input("Enter API username: ").strip()
-    password = args.password or input("Enter API password: ").strip()
+    password = args.password or getpass("Enter API password: ")
 
     # In pipe mode, suppress informational messages (write to stderr instead)
     def info_print(message):
